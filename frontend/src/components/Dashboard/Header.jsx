@@ -1,13 +1,26 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { FaCloud } from "react-icons/fa";
 import profile from '../../assets/profile_pic.png'
 import { FaRegBell } from "react-icons/fa";
 import { HiOutlineLogout } from "react-icons/hi";
 import { FaCaretDown } from "react-icons/fa";
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import { AppContext } from '../../context/appContext';
+
 
 const Header = () => {
-  return (
+
+  const {token, setToken} = useContext(AppContext)
+
+  const navigate = useNavigate()
+
+  const logout = () => {
+    localStorage.removeItem('token');
+    setToken(false);
+    navigate('/')
+    }
+
+   return (
     <header className="bg-white shadow-sm py-4 px-6 flex items-center justify-between fixed top-0 left-0 right-0 z-10">
 
       <Link className="flex items-center gap-2 " to={'/'} >
@@ -29,9 +42,11 @@ const Header = () => {
 
             <div className='group-hover:block hidden absolute dropdown-menu right-0 pt-44 '>
               <div className='flex flex-col gap-2 w-48 py-3 px-2 bg-white text-gray-500 rounded shadow-md border border-gray-200 p-1'>
-                <p className='cursor-pointer hover:text-black p-1'>Profile</p>
+                <div onClick={()=> navigate('/profile')} className='cursor-pointer hover:text-black p-1' >
+                  <p >Profile</p>
+                </div>
                 <hr className=' border-gray-300' />
-                <div className='flex items-center gap-1 cursor-pointer  hover:bg-red-50 px-1 rounded-sm py-1 text-red-500 '>
+                <div onClick={logout} className='flex items-center gap-1 cursor-pointer  hover:bg-red-50 px-1 rounded-sm py-1 text-red-500 '>
                   <HiOutlineLogout />
                   <p className=''>Logout</p>
                 </div>

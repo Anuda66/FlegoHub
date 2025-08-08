@@ -11,8 +11,9 @@ const Sidebar = () => {
 
   const menuItems = [
     { name: 'Dashboard', path: '/dashboard', icon: <IoIosHome /> },
-    { name: 'All Servicess', path: '/users', icon: <FaUserPlus /> },
-    { name: 'My apps', path: '/products', icon: <AiFillProduct /> },
+    { name: 'All Servicess', path: '/allservicess', icon: <FaUserPlus /> },
+    { name: 'My apps', path: '/myApps', icon: <AiFillProduct /> },
+    { name: 'Subscriptions', path: '/subscriptions', icon: <AiFillProduct /> },
   ];
 
   return (
