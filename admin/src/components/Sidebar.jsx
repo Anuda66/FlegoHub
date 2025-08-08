@@ -13,11 +13,13 @@ const Sidebar = () => {
     { name: 'Dashboard', path: '/', icon: <IoIosHome /> },
     { name: 'Users', path: '/users', icon: <FaUserPlus /> },
     { name: 'Products', path: '/products', icon: <AiFillProduct /> },
+    { name: 'Subscriptions', path: '/subscriptions', icon: <AiFillProduct /> },
+    { name: 'Offers', path: '/offers', icon: <AiFillProduct /> },
 
   ];
 
   return (
-    <div className={`bg-gray-800 text-white ${isOpen ? 'w-60' : 'w-18 '} min-h-screen transition-all duration-300 fixed`}>
+    <div className={`bg-primary text-white ${isOpen ? 'w-60' : 'w-18 '} min-h-screen transition-all duration-300 fixed`}>
       <div className="p-4 flex items-center justify-between">
         {isOpen && <h2 className="text-xl font-semibold">Menu</h2>}
         <button
@@ -40,7 +42,7 @@ const Sidebar = () => {
               >
                 <p className="text-xl">{item.icon}</p>
 
-                {isOpen && <span className="ml-3">{item.name}</span>}
+                {isOpen && <span className="ml-3 ">{item.name}</span>}
               </NavLink>
             </li>
           ))}

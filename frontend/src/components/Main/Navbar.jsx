@@ -1,13 +1,21 @@
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
 import { Link, NavLink, useNavigate } from 'react-router-dom'
 import menu from '../../assets/menu_icon.png'
 import dropdown from '../../assets/dropdown_icon.png'
 import { FaCloud } from "react-icons/fa";
+import { AppContext } from '../../context/appContext';
 
 function Navbar() {
 
   const [visible, setVisible] = useState(false)
-  const [token, setToken] = useState(true)
+  const {token, setToken} = useContext(AppContext)
+
+  const logout = () => {
+    setToken(false)
+    localStorage.removeItem('token');
+    //navigate('/')
+  }
+  
   const navigate = useNavigate()
 
   return (

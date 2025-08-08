@@ -5,7 +5,7 @@ import { FaRegBell } from "react-icons/fa";
 import { HiOutlineLogout } from "react-icons/hi";
 import { FaCaretDown } from "react-icons/fa";
 
-const Header = () => {
+const Header = ({setAtoken}) => {
   return (
     <header className="bg-white shadow-sm py-4 px-6 flex items-center justify-between fixed top-0 left-0 right-0 z-10">
       <div className="flex items-center gap-2 ">
@@ -29,7 +29,7 @@ const Header = () => {
               <div className='flex flex-col gap-2 w-48 py-3 px-2 bg-white text-gray-500 rounded shadow-md border border-gray-200 p-1'>
                 <p className='cursor-pointer hover:text-black p-1'>Profile</p>
                 <hr className=' border-gray-300'/>
-                <div className='flex items-center gap-1 cursor-pointer  hover:bg-red-50 px-1 rounded-sm py-1 text-red-500 '>
+                <div onClick={()=>setAtoken('')} className='flex items-center gap-1 cursor-pointer  hover:bg-red-50 px-1 rounded-sm py-1 text-red-500 '>
                   <HiOutlineLogout />
                   <p className=''>Logout</p>
                 </div>
