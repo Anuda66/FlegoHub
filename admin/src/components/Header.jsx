@@ -65,6 +65,10 @@ const Header = ({ setAtoken }) => {
     setOpen(false); // Close dropdown after logout-------------------------
   };
 
+<<<<<<< HEAD
+=======
+const Header = ({setAtoken}) => {
+>>>>>>> 58c974431221237f4f3a368e3cbb39986aac85b7
   return (
     <header className="bg-white shadow-sm py-4 px-6 flex items-center justify-between fixed top-0 left-0 right-0 z-10">
       <div className="flex items-center gap-2 ">
@@ -83,6 +87,7 @@ const Header = ({ setAtoken }) => {
             <span className="ml-2 ">Admin</span>
             <FaCaretDown className="ml-1" />
 
+<<<<<<< HEAD
             {
               open && (
                 <div className='group  absolute dropdown-menu right-0 pt-80 '>
@@ -115,6 +120,16 @@ const Header = ({ setAtoken }) => {
                       <p className=''>Logout</p>
                     </div>
                   </div>
+=======
+
+            <div className='group-hover:block hidden absolute dropdown-menu right-0 pt-44 '>
+              <div className='flex flex-col gap-2 w-48 py-3 px-2 bg-white text-gray-500 rounded shadow-md border border-gray-200 p-1'>
+                <p className='cursor-pointer hover:text-black p-1'>Profile</p>
+                <hr className=' border-gray-300'/>
+                <div onClick={()=>setAtoken('')} className='flex items-center gap-1 cursor-pointer  hover:bg-red-50 px-1 rounded-sm py-1 text-red-500 '>
+                  <HiOutlineLogout />
+                  <p className=''>Logout</p>
+>>>>>>> 58c974431221237f4f3a368e3cbb39986aac85b7
                 </div>
               )
             }

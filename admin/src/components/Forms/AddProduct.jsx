@@ -1,14 +1,20 @@
 import React, { useState } from 'react'
 import uplaodImage from '../../assets/upload_area.png'
+<<<<<<< HEAD
 import { IoIosRemoveCircle } from "react-icons/io";
+=======
+>>>>>>> 58c974431221237f4f3a368e3cbb39986aac85b7
 import { toast } from 'react-toastify'
 import { backendUrl } from '../../App'
 import axios from 'axios'
 
 function AddProduct({ aToken }) {
 
+<<<<<<< HEAD
     const [open, setOpen] = useState(false);
 
+=======
+>>>>>>> 58c974431221237f4f3a368e3cbb39986aac85b7
     const [image1, setImage1] = useState(false)
     const [image2, setImage2] = useState(false)
     const [image3, setImage3] = useState(false)
@@ -16,6 +22,7 @@ function AddProduct({ aToken }) {
 
     const [productName, setProductName] = useState('')
     const [description, setDescription] = useState('')
+<<<<<<< HEAD
     const [features, setFeatures] = useState(['']);
     const [isActive, setIsActive] = useState(true);
     const [category, setCategory] = useState('');
@@ -41,6 +48,8 @@ function AddProduct({ aToken }) {
         updatedFeatures[index] = value;
         setFeatures(updatedFeatures);
     };
+=======
+>>>>>>> 58c974431221237f4f3a368e3cbb39986aac85b7
 
     const onSubmitHandler = async (e) => {
         e.preventDefault()
@@ -50,10 +59,13 @@ function AddProduct({ aToken }) {
 
             formData.append('productName', productName)
             formData.append('description', description)
+<<<<<<< HEAD
             formData.append('category', category)
             formData.append('features', features)
             formData.append('isActive', isActive)
             formData.append('website', website)
+=======
+>>>>>>> 58c974431221237f4f3a368e3cbb39986aac85b7
 
             image1 && formData.append('image1', image1)
             image2 && formData.append('image2', image2)
@@ -61,34 +73,57 @@ function AddProduct({ aToken }) {
             image4 && formData.append('image4', image4)
 
             const response = await axios.post(backendUrl + '/api/product/add', formData, { headers: { aToken } })
+<<<<<<< HEAD
             //console.log(response.data);
 
             if (response.data.success) {
                 toast.success(response.data.message);
 
+=======
+            console.log(response.data);
+
+            if (response.data.success) {
+                toast.success(response.data.message);
+                
+>>>>>>> 58c974431221237f4f3a368e3cbb39986aac85b7
                 setImage1(false);
                 setImage2(false);
                 setImage3(false);
                 setImage4(false);
                 setProductName('');
                 setDescription('');
+<<<<<<< HEAD
                 setFeatures([''])
                 setIsActive(true)
                 setCategory('')
                 setWebsite('')
                 setOpen(false);
+=======
+>>>>>>> 58c974431221237f4f3a368e3cbb39986aac85b7
             }
             else {
                 toast.error(response.data.message)
             }
+<<<<<<< HEAD
+=======
+
+
+>>>>>>> 58c974431221237f4f3a368e3cbb39986aac85b7
         }
         catch (error) {
             console.log(error);
             toast.error(error.message)
         }
     }
+<<<<<<< HEAD
     return (
         <div className='overflow-y-auto' style={{ maxHeight: '80vh' }}>
+=======
+
+
+    return (
+        <div className='mt-5'>
+>>>>>>> 58c974431221237f4f3a368e3cbb39986aac85b7
             <form onSubmit={onSubmitHandler}>
                 <p className='mb-2'>Upload Image</p>
                 <div className='flex gap-2 '>
@@ -117,6 +152,7 @@ function AddProduct({ aToken }) {
                     <p className='mb-2' >Description</p>
                     <textarea onChange={(e) => setDescription(e.target.value)} value={description} className="w-full p-1 mt-1 border rounded border-zinc-300" type="text" required placeholder='Enter product description' />
                 </div>
+<<<<<<< HEAD
                 <div className="w-full mt-3">
                     <p className='mb-2'>Web Site (Optional)</p>
                     <input onChange={(e) => setWebsite(e.target.value)} value={website} className="w-full p-1 mt-1 border rounded border-zinc-300" type="text"  placeholder='Enter product name' />
@@ -164,6 +200,12 @@ function AddProduct({ aToken }) {
                 <div className="mt-6 flex justify-end space-x-2">
                     <button type='submit' className="rounded-md bg-blue-700 px-4 py-2 text-sm font-semibold text-white hover:bg-primary cursor-pointer">
                         Create Product
+=======
+
+                <div className="mt-6 flex justify-end space-x-2">
+                    <button type='submit' className="rounded-md bg-blue-700 px-4 py-2 text-sm font-semibold text-white hover:bg-primary cursor-pointer">
+                        Add User
+>>>>>>> 58c974431221237f4f3a368e3cbb39986aac85b7
                     </button>
                 </div>
             </form>

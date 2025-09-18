@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import React, { useContext } from 'react'
 import { useSidebar } from '../../context/SidebarContext';
 import { AppContext } from '../../context/appContext';
@@ -39,6 +40,20 @@ function AllServicess() {
             }
           </div>
         </div>
+=======
+import React from 'react'
+import { useSidebar } from '../../context/SidebarContext';
+
+
+function AllServicess() {
+
+    const { isOpen } = useSidebar();
+
+  return (
+    <div  className='bg-slate-100'>
+      <div className={`${isOpen ? 'ml-64' : 'ml-20'} mt-16 p-6 duration-300`}>
+        <h1 className="text-2xl font-bold mb-6">All Servicess</h1>
+>>>>>>> 58c974431221237f4f3a368e3cbb39986aac85b7
       </div>
     </div>
   )

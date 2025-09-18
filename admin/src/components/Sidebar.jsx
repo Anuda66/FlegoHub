@@ -15,9 +15,14 @@ const Sidebar = () => {
     { name: 'Dashboard', path: '/', icon: <IoIosHome /> },
     { name: 'Users', path: '/users', icon: <FaUserPlus /> },
     { name: 'Products', path: '/products', icon: <AiFillProduct /> },
+<<<<<<< HEAD
     { name: 'Pricing Plan', path: '/pricingPlan', icon: <IoDocumentsSharp  /> },
     { name: 'Subscriptions', path: '/subscriptions', icon: <AiFillProduct /> },
     { name: 'Offers', path: '/offers', icon: <MdLocalOffer  /> },
+=======
+    { name: 'Subscriptions', path: '/subscriptions', icon: <AiFillProduct /> },
+    { name: 'Offers', path: '/offers', icon: <AiFillProduct /> },
+>>>>>>> 58c974431221237f4f3a368e3cbb39986aac85b7
 
   ];
 

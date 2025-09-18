@@ -8,6 +8,7 @@ const createToken = (id) => {
     return jwt.sign({ id }, process.env.JWT_SECRET)
 }
 
+<<<<<<< HEAD
 // API fro add User from admin------------------------
 const addUser = async (req, res) => {
     try {
@@ -50,6 +51,8 @@ const addUser = async (req, res) => {
     }
 }
 
+=======
+>>>>>>> 58c974431221237f4f3a368e3cbb39986aac85b7
 // API for user register------------------------------
 const registerUser = async (req, res) => {
     try {
@@ -149,10 +152,21 @@ const updateProfile = async (req, res) => {
             return res.json({ success: false, message: 'User ID missing' });
         }
 
+<<<<<<< HEAD
         await userModel.findByIdAndUpdate(userId, { NIC, name, email, phone })
 
         if (imageFile) {
 
+=======
+        if (!NIC || !name || !email || !phone) {
+            return res.json({ success: false, message: 'Data Missing?' })
+        }
+        
+        await userModel.findByIdAndUpdate(userId, { NIC, name, email, phone })
+
+        if (imageFile) {
+            
+>>>>>>> 58c974431221237f4f3a368e3cbb39986aac85b7
             const imageUpload = await cloudinary.uploader.upload(imageFile.path, { resource_type: 'image' })
             const imageURL = imageUpload.secure_url
 
@@ -166,6 +180,7 @@ const updateProfile = async (req, res) => {
     }
 }
 
+<<<<<<< HEAD
 //API for list user----------------------------------
 const userList = async (req, res) => {
     try {
@@ -198,3 +213,6 @@ const removeUser = async (req, res) => {
 
 
 export { registerUser, loginUser, getProfile, updateProfile, userList, removeUser, addUser } 
+=======
+export { registerUser, loginUser, getProfile, updateProfile } 
+>>>>>>> 58c974431221237f4f3a368e3cbb39986aac85b7
