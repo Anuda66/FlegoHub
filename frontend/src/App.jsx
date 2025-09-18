@@ -16,6 +16,7 @@ import { ToastContainer } from 'react-toastify';
 import Profile from './pages/Dashboard/Profile'
 import Subscriptions from './pages/Dashboard/Subscriptions'
 import MyApps from './pages/Dashboard/MyApps'
+import AppDetails from './pages/Dashboard/AppDetails'
 
 function App() {
 
@@ -40,6 +41,7 @@ function App() {
           <Route path='/profile' element={<Profile />} />
           <Route path='/subscriptions' element={<Subscriptions />} />
           <Route path='/myApps' element={<MyApps />} />
+          <Route path='/allservicess/:productId' element={<AppDetails />} />
         </Route>
       </Routes>
 

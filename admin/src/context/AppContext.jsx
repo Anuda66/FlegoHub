@@ -1,12 +1,11 @@
 import { createContext } from "react";
-import {users} from '../assets/assets'
 
 export const AppContext = createContext()
 
 const AppContextProvider = (props) => {
 
     const value = {
-        users,
+        
     }
 
     return (

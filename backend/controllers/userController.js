@@ -8,6 +8,48 @@ const createToken = (id) => {
     return jwt.sign({ id }, process.env.JWT_SECRET)
 }
 
+// API fro add User from admin------------------------
+const addUser = async (req, res) => {
+    try {
+        const { NIC, name, email, password, phone } = req.body
+
+        if (!NIC || !name || !email || !password || !phone) {
+            return res.json({ success: false, message: "Missing Details" })
+        }
+
+        // validating email------------------------------
+        if (!validator.isEmail(email)) {
+            return res.json({ success: false, message: "Place Enter Validate Email" })
+        }
+
+        // Validating strong password---------------------
+        if (password.length < 8) {
+            return res.json({ success: false, message: "Place Enter Strong Password" })
+        }
+
+        //hashing password-------------------------------
+        const salt = await bcrypt.genSalt(10)
+        const hashedPassword = await bcrypt.hash(password, salt)
+
+        const userData = {
+            NIC,
+            name,
+            email,
+            password: hashedPassword,
+            phone
+        }
+
+        const newUser = new userModel(userData)
+        await newUser.save()
+
+        res.json({ success: true, message: "User Added" })
+    }
+    catch (error) {
+        console.log(error);
+        res.json({ success: false, message: error.message })
+    }
+}
+
 // API for user register------------------------------
 const registerUser = async (req, res) => {
     try {
@@ -107,14 +149,10 @@ const updateProfile = async (req, res) => {
             return res.json({ success: false, message: 'User ID missing' });
         }
 
-        if (!NIC || !name || !email || !phone) {
-            return res.json({ success: false, message: 'Data Missing?' })
-        }
-        
         await userModel.findByIdAndUpdate(userId, { NIC, name, email, phone })
 
         if (imageFile) {
-            
+
             const imageUpload = await cloudinary.uploader.upload(imageFile.path, { resource_type: 'image' })
             const imageURL = imageUpload.secure_url
 
@@ -128,4 +166,35 @@ const updateProfile = async (req, res) => {
     }
 }
 
-export { registerUser, loginUser, getProfile, updateProfile } 
+//API for list user----------------------------------
+const userList = async (req, res) => {
+    try {
+        const userList = await userModel.find({}).select('-password')
+        if (userList.length === 0) {
+            return res.json({ success: false, message: "No users found" })
+        }
+        const stats = {
+            totalUsers: userList.length
+        }
+        res.json({ success: true, stats, userList });
+    }
+    catch (error) {
+        console.log(error);
+        res.json({ success: false, message: error.message })
+    }
+}
+
+//API fro delete users-----------------------------
+const removeUser = async (req, res) => {
+    try {
+        await userModel.findByIdAndDelete(req.body.id)
+        res.json({ success: true, message: "User eccount removed" })
+    }
+    catch (error) {
+        console.log(error);
+        res.json({ success: false, message: error.message })
+    }
+}
+
+
+export { registerUser, loginUser, getProfile, updateProfile, userList, removeUser, addUser } 

@@ -39,9 +39,6 @@ function Login() {
           setToken(response.data.token);
           localStorage.setItem('token', response.data.token)
           navigate("/dashboard");
-          console.log(response);
-          
-          
         }
         else {
           toast.error(response.data.message);

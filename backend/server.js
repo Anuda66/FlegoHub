@@ -6,6 +6,7 @@ import connedtCloudinry from './config/cloudinary.js'
 import adminRouter from './routes/adminRoute.js'
 import userRouter from './routes/userRouter.js'
 import productRouter from './routes/productRout.js'
+import planRouter from './routes/planRoute.js'
 
 // App config ------------------------------------------------
 const app = express()
@@ -14,13 +15,15 @@ connectDB()
 connedtCloudinry()
 
 // Middelware ------------------------------------------------
-app.use(express.json())
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 app.use(cors())
 
 //API end point ----------------------------------------------
 app.use('/api/admin', adminRouter)
 app.use('/api/user', userRouter)
 app.use('/api/product', productRouter)
+app.use('/api/plan', planRouter)
 
 app.get('/', (req, res) => {
     res.send('API working')

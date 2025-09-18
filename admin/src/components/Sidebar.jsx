@@ -4,6 +4,8 @@ import { FaUserPlus } from "react-icons/fa6";
 import { AiFillProduct } from "react-icons/ai";
 import { IoIosHome } from "react-icons/io";
 import { RiMenuFold2Fill } from "react-icons/ri";
+import { IoDocumentsSharp } from "react-icons/io5";
+import { MdLocalOffer } from "react-icons/md";
 
 
 const Sidebar = () => {
@@ -13,8 +15,9 @@ const Sidebar = () => {
     { name: 'Dashboard', path: '/', icon: <IoIosHome /> },
     { name: 'Users', path: '/users', icon: <FaUserPlus /> },
     { name: 'Products', path: '/products', icon: <AiFillProduct /> },
+    { name: 'Pricing Plan', path: '/pricingPlan', icon: <IoDocumentsSharp  /> },
     { name: 'Subscriptions', path: '/subscriptions', icon: <AiFillProduct /> },
-    { name: 'Offers', path: '/offers', icon: <AiFillProduct /> },
+    { name: 'Offers', path: '/offers', icon: <MdLocalOffer  /> },
 
   ];
 

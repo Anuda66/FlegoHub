@@ -1,11 +1,12 @@
+
 import { v2 as cloudinary } from 'cloudinary';
 import productModel from '../models/productModel.js';
 
-// API for add product --------------------------------
+// API for add product ----------------------------------------------------------
 
 const addProduct = async (req, res) => {
     try {
-        const { productName, description } = req.body;
+        const { productName, description, category, website, features, isActive} = req.body;
 
         const image1 = req.files.image1 && req.files.image1[0]
         const image2 = req.files.image2 && req.files.image2[0]
@@ -24,9 +25,12 @@ const addProduct = async (req, res) => {
             productName,
             description,
             images: imagesUrl,
-            date: Date.now()
+            date: Date.now(),
+            category,
+            website,
+            features,
+            isActive
         }
-        // console.log(productData);
         const product = new productModel(productData)
         await product.save()
         res.json({ success: true, message: "Product Added" })
@@ -37,7 +41,7 @@ const addProduct = async (req, res) => {
     }
 }
 
-// API fro list product-----------------------------
+// API fro list product----------------------------------------------------------
 
 const listProduct = async (req, res) => {
     try {
@@ -45,7 +49,10 @@ const listProduct = async (req, res) => {
         if (product.length === 0) {
             return res.json({ success: false, message: "No products found" });
         }
-        res.json({ success: true, product });
+        const stats ={
+            totalProduct : product.length
+        }
+        res.json({ success: true, product, stats });
     }
     catch (error) {
         console.log(error);
@@ -53,14 +60,11 @@ const listProduct = async (req, res) => {
     }
 }
 
-
-
-//API fro remove product--------------------------
+//API fro delete product---------------------------------------------------------
 const removeProduct = async (req, res) => {
     try {
         await productModel.findByIdAndDelete(req.body.id)
         res.json({ success: true, message: "Product Removed" })
-
     }
     catch (error) {
         console.log(error);
@@ -68,7 +72,7 @@ const removeProduct = async (req, res) => {
     }
 }
 
-//API fro update product--------------------------
+//API fro update product---------------------------------------------------------
 const updateProduct = async (req, res) => {
     try {
 
@@ -79,7 +83,7 @@ const updateProduct = async (req, res) => {
     }
 }
 
-//API fro single product info--------------------------
+//API for single product info----------------------------------------------------
 const singleProduct = async (req, res) => {
     try {
         const { productId } = req.body

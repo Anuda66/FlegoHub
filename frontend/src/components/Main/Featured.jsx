@@ -7,18 +7,15 @@ import { Link } from 'react-router-dom';
 
 function Featured() {
 
-    const { applications } = useContext(AppContext)
-    //console.log(applications);
+    const { productAndPalan } = useContext(AppContext)
 
     const [latestApp, setLatestApp] = useState([])
 
     useEffect(() => {
-        if (applications && applications.length > 0) {
-            setLatestApp(applications.slice(0, 4));
+        if (productAndPalan && productAndPalan.length > 0) {
+            setLatestApp(productAndPalan.slice(0, 4));
         }
-    }, [applications]);
-
-    //console.log("latestApp:", latestApp);
+    }, [productAndPalan]);
 
     return (
         <div>
@@ -32,18 +29,15 @@ function Featured() {
                     </p>
                 </div>
 
-                <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-4">
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6">
                     {/* render product-----------------------------------------------------------------------------------  */}
                     {latestApp.map((item, index) => (
-                        <div  key={index} className='bg-white rounded-lg shadow-md overflow-hidden hover:scale-110 transition ease-in-out'>
+                        <div key={index} className='bg-white rounded-lg shadow-sm overflow-hidden'>
                             <div className="p-6">
-                                <img className="h-24  mb-4  mx-auto" src={item.image} alt='' />
-                                <h3 className="text-lg font-medium text-gray-900 mb-2">{item.name}</h3>
-                                <p className="text-gray-500 text-sm">
-                                    {item.description}
-                                </p>
-                                <div  className="mt-6">
-                                    <Link to={`/product/${item._id}`}  className="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-primary hover:bg-blue-800">
+                                <img className="max-h-48" src={item.images[0]} alt='' />
+                                <h3 className="font-semibold text-lg py-2">{item.productName}</h3>
+                                <div className="mt-6 flex justify-end">
+                                    <Link to={`/product/${item._id}`} className="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-primary hover:bg-blue-800">
                                         Visit App
                                     </Link>
                                 </div>
@@ -56,7 +50,7 @@ function Featured() {
                     <a href="/apps" className="inline-flex items-center px-6 py-3 border border-transparent text-base font-medium rounded-md shadow-sm text-white bg-primary hover:bg-blue-800">
                         View All Applications
                         <i className="fas fa-arrow-right ml-2"></i>
-                        
+
                     </a>
                 </div>
             </div>

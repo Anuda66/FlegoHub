@@ -1,81 +1,125 @@
 import React, { useContext, useEffect, useState } from 'react'
 import { AppContext } from '../context/appContext'
 import { useParams } from 'react-router-dom'
+import { TiTick } from 'react-icons/ti'
 
 function Product() {
+  const [isAnnual, setIsAnnual] = useState(false);
+  const { productId } = useParams();
+  const { productAndPalan } = useContext(AppContext);
+  const [productPlanData, setProductPlanData] = useState(null);
 
-  const { productId } = useParams()
-  console.log(productId);
-  const { applications } = useContext(AppContext)
-  const [productData, setProductData] = useState(false)
-  const [image, setImage] = useState('')
-
-  const fetchProductData = async () => {
-    applications.map((item) => {
+  const fetchProductPalan = async () => {
+    productAndPalan.forEach((item) => {
       if (item._id === productId) {
-        setProductData(item)
-        setImage (item.demoImage[0])
-        //console.log(item);
-         return null;
+        setProductPlanData(item);
       }
-    })
-  }
+    });
+  };
 
   useEffect(() => {
-    fetchProductData()
-  }, [productId, applications])
+    fetchProductPalan();
+  }, [productId, productAndPalan]);
 
-  return productData ? (
-    <div className='px-4 sm:px-[5vw] md;px-[7vw] lg:px-[9vw] mt-32'>
+  return productPlanData ? (
+    <div className='px-4 sm:px-[5vw] md:px-[7vw] lg:px-[9vw] mt-32'>
       <div className='flex gap-12 sm:gap-12 flex-col md:flex-row bg-white rounded-2xl shadow-lg p-8 mb-10'>
         <div>
-          <div className='flex items-center mb-5'>
-            <img className='h-20' src={productData.image} alt="" />
-            <p className='text-primary font-bold text-2xl'>{productData.name}</p>
-          </div>
-          <p className='text-xl mb-3'>Description</p>
-          <hr className='border-gray-400 mb-3'/>
-          <p className='text-md text-gray-600 mb-3'>{productData.description}</p>
-        </div>
-        <div className='flex-1 flex flex-col-reverse gap-3 sm:flex-row'>
-          <div className='flex sm:flex-col overflow-x-auto sm:overflow-y-scroll justify-between sm:justify-normal sm:w-[18.7%] w-full'>
-            {
-              productData.demoImage.map((item, index)=>(
-                <img onClick={()=>setImage(item)} src={item} key={index} className='w-[24%] sm:w-full sm:mb-3 flex-shrink-0 cursor-pointer' alt="" />
-              ))
-            }
-          </div>
-          <div className='w-full sm:w-[80%]'>
-            <img className='w-full h-auto' src={image} alt="" />
-          </div>
-        </div>
-      </div>
-      <div className='mt-15 mb-15'>
-        <p className='text-xl mb-5'>Praising</p>
-        <hr className='border-gray-400 mb-10'/>
-        <div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10'>
-          {
-            Object.keys(productData.price).map((key, index) => (
-              <div key={index} className='bg-white p-5 rounded-lg shadow-md'>
-                <h3 className='text-2xl font-bold mb-2 text-primary'>{key}</h3>
-                <div className='flex gap-3 items-center'>
-                  <p>Price:</p><p className='text-gray-600 mb-4 font-bold text-4xl'> ${productData.price[key].price}</p>
-                </div>
-                <ul className='list-disc pl-5 text-gray-600'>
-                  {productData.price[key].feture.map((feature, idx) => (
-                    <li key={idx}>{feature} <hr className='mb-5'/></li>
-                    
-                  ))}
-                </ul>
-                <button className='bg-primary py-2 px-3 text-white rounded-md cursor-pointer hover:bg-blue-800 mt-10 items-center '>BUY NOW</button>
+          <div className=''>
+            <div className="p-6 border-b">
+              <div className='flex items-center mb-5'>
+                <p className='text-primary font-bold text-2xl'>{productPlanData.productName}</p>
               </div>
-            ))
-          }
-        
+              <p className='text-xl mb-3'>Description</p>
+              <hr className='border-gray-400 mb-3' />
+              <p className='text-md text-gray-600 mb-3'>{productPlanData.description}</p>
+            </div>
+            {/* Pricing Plans */}
+            <div className="p-6">
+              <div>
+                <div className="min-h-screen py-12 px-4 sm:px-6 lg:px-8">
+                  <div className="max-w-7xl mx-auto">
+                    <div className="text-center">
+                      <h2 className="text-3xl font-extrabold text-gray-900 sm:text-4xl">
+                        Pricing Plans
+                      </h2>
+                      <p className="mt-4 text-lg text-gray-600">
+                        Choose the perfect plan for your needs.
+                      </p>
+
+                      {/* Toggle switch */}
+                      <div className="mt-6 flex justify-center items-center">
+                        <span className={`mr-3 text-sm font-medium ${!isAnnual ? 'text-gray-900' : 'text-gray-500'}`}>
+                          Monthly
+                        </span>
+                        <button
+                          onClick={() => setIsAnnual(!isAnnual)}
+                          className="relative rounded-full focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary"
+                        >
+                          <div className="w-16 h-8 flex items-center bg-gray-300 rounded-full p-1 transition duration-200 ease-in-out">
+                            <div
+                              className={`bg-white w-6 h-6 rounded-full shadow-md transform transition-transform duration-200 ease-in-out ${isAnnual ? 'translate-x-8' : 'translate-x-0'}`}
+                            ></div>
+                          </div>
+                        </button>
+                        <span className={`ml-3 text-sm font-medium ${isAnnual ? 'text-gray-900' : 'text-gray-500'}`}>
+                          Annual <span className="text-green-500">(Save 20%)</span>
+                        </span>
+                      </div>
+                    </div>
+
+                    <div className="mt-16 space-y-12 lg:space-y-0 lg:grid lg:grid-cols-3 lg:gap-x-8">
+                      {productPlanData.planId.map((plan) => (
+                        <div
+                          key={plan._id}
+                          className={`relative p-8 bg-white rounded-2xl shadow-sm border border-gray-200 ${plan.isPopular ? 'ring-2 ring-blue-800' : ''} transition-all duration-300 hover:shadow-md`}
+                        >
+                          {plan.isPopular && (
+                            <div className="absolute top-0 -translate-y-1/2 left-1/2 -translate-x-1/2">
+                              <span className="bg-blue-800 text-white px-4 py-1 text-sm font-semibold rounded-full">
+                                Most Popular
+                              </span>
+                            </div>
+                          )}
+
+                          <div className="text-center">
+                            <h3 className="text-2xl font-bold text-gray-900">{plan.name}</h3>
+                            <p className="mt-4 text-gray-600">{plan.description}</p>
+
+                            <div className="mt-6 flex items-baseline justify-center">
+                              <span className="text-3xl font-bold text-gray-900">
+                                {plan.currency} {isAnnual ? plan.pricing?.yearly?.price || 'N/A' : plan.pricing?.monthly?.price || 'N/A'}
+                              </span>
+                              <span className="ml-1 text-xl font-medium text-gray-500">{isAnnual ? "/annually" : "/month"}</span>
+                            </div>
+
+                            <ul className="mt-8 space-y-4">
+                              {plan.features.map((feature) => (
+                                <li key={feature} className="flex items-center">
+                                  <TiTick className="h-5 w-5 text-green-500" />
+                                  <span className="ml-3 text-gray-600">{feature}</span>
+                                </li>
+                              ))}
+                            </ul>
+
+                            <button
+                              className={`mt-8 w-full py-3 px-6 rounded-md text-base font-semibold ${plan.isPopular ? 'bg-blue-800 text-white hover:bg-blue-700' : 'bg-gray-100 text-gray-900 hover:bg-gray-200'} focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 transition-colors duration-200 cursor-pointer`}
+                            >
+                              Get Started
+                            </button>
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
-    </div>
-  ) : <div className='opacity-0'></div>
+  ) : <div className='opacity-0'></div>;
 }
 
-export default Product
+export default Product;

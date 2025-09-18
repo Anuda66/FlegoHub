@@ -17,7 +17,7 @@ const Sidebar = () => {
   ];
 
   return (
-    <div className={`bg-primary text-white ${isOpen ? 'w-60' : 'w-18 '} min-h-screen transition-all duration-300 fixed`}>
+    <div className={`bg-primary text-white ${isOpen ? 'w-60' : 'w-18 '} min-h-screen transition-all duration-500 fixed`}>
       <div className="p-4 flex items-center justify-between">
         {isOpen && <h2 className="text-xl font-semibold">Menu</h2>}
         <button
@@ -40,7 +40,7 @@ const Sidebar = () => {
               >
                 <p className="text-xl">{item.icon}</p>
 
-                {isOpen && <span className="ml-3">{item.name}</span>}
+                {isOpen && <span className="ml-3 ">{item.name}</span>}
               </NavLink>
             </li>
           ))}
