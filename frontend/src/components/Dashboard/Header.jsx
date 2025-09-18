@@ -1,8 +1,4 @@
-<<<<<<< HEAD
 import React, { useContext, useState, useEffect, useRef } from 'react';
-=======
-import React, { useContext } from 'react';
->>>>>>> 58c974431221237f4f3a368e3cbb39986aac85b7
 import { FaCloud } from "react-icons/fa";
 import profile from '../../assets/profile_pic.png'
 import { FaRegBell } from "react-icons/fa";
@@ -14,7 +10,6 @@ import { AppContext } from '../../context/appContext';
 
 const Header = () => {
 
-<<<<<<< HEAD
   const { token, setToken, userData } = useContext(AppContext)
 
   const [firstName, setFirstName] = useState('')
@@ -27,9 +22,6 @@ const Header = () => {
     if (!firstName) return '';
     return (firstName.trim().split(' ')[0])
   }
-=======
-  const {token, setToken} = useContext(AppContext)
->>>>>>> 58c974431221237f4f3a368e3cbb39986aac85b7
 
   const navigate = useNavigate()
 
@@ -37,7 +29,6 @@ const Header = () => {
     localStorage.removeItem('token');
     setToken(false);
     navigate('/')
-<<<<<<< HEAD
   }
 
   // Handle clicks outside the dropdown----------------------------------------
@@ -69,11 +60,6 @@ const Header = () => {
 
 
   return (
-=======
-    }
-
-   return (
->>>>>>> 58c974431221237f4f3a368e3cbb39986aac85b7
     <header className="bg-white shadow-sm py-4 px-6 flex items-center justify-between fixed top-0 left-0 right-0 z-10">
 
       <Link className="flex items-center gap-2 " to={'/'} >
@@ -92,7 +78,6 @@ const Header = () => {
             <span className="ml-2 ">{getFirstName()}</span>
             <FaCaretDown className="ml-1" />
 
-<<<<<<< HEAD
             {
               open && (
                 <div className='group-hover:block  absolute dropdown-menu right-0 top-full mt-2 '>
@@ -106,18 +91,6 @@ const Header = () => {
                       <p className=''>Logout</p>
                     </div>
                   </div>
-=======
-
-            <div className='group-hover:block hidden absolute dropdown-menu right-0 pt-44 '>
-              <div className='flex flex-col gap-2 w-48 py-3 px-2 bg-white text-gray-500 rounded shadow-md border border-gray-200 p-1'>
-                <div onClick={()=> navigate('/profile')} className='cursor-pointer hover:text-black p-1' >
-                  <p >Profile</p>
-                </div>
-                <hr className=' border-gray-300' />
-                <div onClick={logout} className='flex items-center gap-1 cursor-pointer  hover:bg-red-50 px-1 rounded-sm py-1 text-red-500 '>
-                  <HiOutlineLogout />
-                  <p className=''>Logout</p>
->>>>>>> 58c974431221237f4f3a368e3cbb39986aac85b7
                 </div>
               )
             }

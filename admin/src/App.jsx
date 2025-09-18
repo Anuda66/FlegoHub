@@ -4,17 +4,11 @@ import Dashboard from './pages/Dashboard';
 import Users from './pages/Users';
 import Products from './pages/Products';
 import DashboardLayout from './components/Layout/DashboardLayout'
-<<<<<<< HEAD
 import Login from './pages/Login';
 import { ToastContainer } from 'react-toastify';
 import SingleProduct from './pages/SingleProduct';
 import Subscriptions from './pages/Subscriptions';
 import PricingPlan from './pages/PricingPlan';
-=======
-import MainLayout from './components/Layout/MainLayout';
-import Login from './pages/Login';
-import { ToastContainer } from 'react-toastify';
->>>>>>> 58c974431221237f4f3a368e3cbb39986aac85b7
 
 export const backendUrl = import.meta.env.VITE_BACKEND_URL
 
@@ -39,12 +33,9 @@ function App() {
               <Route path='/' element={<Dashboard aToken={aToken} />} />
               <Route path='/users' element={<Users aToken={aToken} />} />
               <Route path='/products' element={<Products aToken={aToken} />} />
-<<<<<<< HEAD
               <Route path='/products/:productId' element={<SingleProduct aToken={aToken} />} />
               <Route path='/subscriptions' element={<Subscriptions aToken={aToken} />} />
               <Route path='/pricingPlan' element={<PricingPlan aToken={aToken} />} />
-=======
->>>>>>> 58c974431221237f4f3a368e3cbb39986aac85b7
             </Route>
           </Routes>
         </>
