@@ -141,7 +141,8 @@ function Login() {
               </span>
             </p>
           ) : (
-            <p>
+            
+            <p >email : flego1@gmail.com <br />password : flego123<br />
               Craete an new account?{" "}
               <span
                 onClick={() => setState("Sing Up")}

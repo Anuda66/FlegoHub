@@ -92,7 +92,7 @@ const Header = ({ setAtoken }) => {
                         <img className='w-14 h-14 rounded-full' src={adminData.image} alt="admin profile image" />
                       <div className='ml-3'>
                         <p className='cursor-pointer  text-blue-800 p-1 font-bold text-sm'>{adminData.name}</p>
-                        <span className="bg-blue-100 text-blue-800 text-xs font-medium me-2 px-2.5 py-0.5 rounded-full ">Admin</span>
+                        <span className="bg-green-100 text-green-800 text-xs font-medium me-2 px-2.5 py-0.5 rounded-full ">Admin</span>
                       </div>
                       </div>
                     </div>

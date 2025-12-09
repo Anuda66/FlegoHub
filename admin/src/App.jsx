@@ -9,6 +9,8 @@ import { ToastContainer } from 'react-toastify';
 import SingleProduct from './pages/SingleProduct';
 import Subscriptions from './pages/Subscriptions';
 import PricingPlan from './pages/PricingPlan';
+import Offers from './pages/Offers';
+import SlipPayents from './pages/SlipPayents';
 
 export const backendUrl = import.meta.env.VITE_BACKEND_URL
 
@@ -36,6 +38,8 @@ function App() {
               <Route path='/products/:productId' element={<SingleProduct aToken={aToken} />} />
               <Route path='/subscriptions' element={<Subscriptions aToken={aToken} />} />
               <Route path='/pricingPlan' element={<PricingPlan aToken={aToken} />} />
+              <Route path='/offers' element={<Offers aToken={aToken} />} />
+              <Route path='/slipPayents' element={<SlipPayents aToken={aToken} />} />
             </Route>
           </Routes>
         </>

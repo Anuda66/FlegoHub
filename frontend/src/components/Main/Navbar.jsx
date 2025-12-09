@@ -50,7 +50,7 @@ function Navbar() {
                 {
                   token ?
                     <div>
-                      <button onClick={()=>navigate('/dashboard')} className='btn-primary items-center py-2 px-4 border border-transparent text-base font-medium rounded-md shadow-sm text-primary bg-accent hover:bg-yellow-400 cursor-pointer'>Dashboard</button>
+                      <button onClick={()=>navigate('/allservicess')} className='btn-primary items-center py-2 px-4 border border-transparent text-base font-medium rounded-md shadow-sm text-primary bg-accent hover:bg-yellow-400 cursor-pointer'>Dashboard</button>
                     </div>
                     : <button onClick={()=>navigate('/login')} className='bg-blue-800 py-2 px-4 text-white rounded-md hover:bg-blue-700 cursor-pointer'>Sign In</button>
                 }

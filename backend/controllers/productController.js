@@ -6,7 +6,7 @@ import productModel from '../models/productModel.js';
 
 const addProduct = async (req, res) => {
     try {
-        const { productName, description, category, website, features, isActive} = req.body;
+        const { productName, description, category, website, features, isActive } = req.body;
 
         const image1 = req.files.image1 && req.files.image1[0]
         const image2 = req.files.image2 && req.files.image2[0]
@@ -49,8 +49,8 @@ const listProduct = async (req, res) => {
         if (product.length === 0) {
             return res.json({ success: false, message: "No products found" });
         }
-        const stats ={
-            totalProduct : product.length
+        const stats = {
+            totalProduct: product.length
         }
         res.json({ success: true, product, stats });
     }
@@ -75,9 +75,73 @@ const removeProduct = async (req, res) => {
 //API fro update product---------------------------------------------------------
 const updateProduct = async (req, res) => {
     try {
+        const { productId } = req.params;
+        const { productName, description, category, website, features, isActive } = req.body;
+
+        // Find existing product
+        const existingProduct = await productModel.findById(productId);
+        if (!existingProduct) {
+            return res.json({ success: false, message: "Product not found" });
+        }
+
+        // Handle image uploads if provided
+        const image1 = req.files.image1 && req.files.image1[0];
+        const image2 = req.files.image2 && req.files.image2[0];
+        const image3 = req.files.image3 && req.files.image3[0];
+        const image4 = req.files.image4 && req.files.image4[0];
+
+        const images = [image1, image2, image3, image4].filter((item) => item !== undefined);
+
+        let imagesUrl = existingProduct.images; // Keep existing images by default
+
+        if (images.length > 0) {
+            // Upload new images to Cloudinary if any are provided
+            imagesUrl = await Promise.all(
+                images.map(async (item) => {
+                    let result = await cloudinary.uploader.upload(item.path, { resource_type: 'image' });
+                    return result.secure_url;
+                })
+            );
+        }
+
+        // Prepare update data with only provided fields
+        const updateData = {
+            ...(productName && { productName }),
+            ...(description && { description }),
+            ...(images.length > 0 && { images: imagesUrl }),
+            ...(category && { category }),
+            ...(website && { website }),
+            ...(features && { features }),
+            ...(typeof isActive !== 'undefined' && { isActive }),
+            date: Date.now()
+        };
+
+        // Update product
+        const updatedProduct = await productModel.findByIdAndUpdate(
+            productId,
+            { $set: updateData },
+            { new: true }
+        );
+
+        res.json({ success: true, message: "Product Updated", data: updatedProduct });
 
     }
     catch (error) {
+        console.log(error);
+        res.json({ success: false, message: error.message })
+    }
+}
+
+// API fro gel single product details-------------------------------------------------
+const getProductById = async (req, res) => {
+    try{
+        const product = await productModel.findById(req.params.id);
+        if(!product){
+            return res.json({ success: false, message: "Product not found" });
+        }
+        res.json({ success: true, data: product });
+    }
+    catch(error){
         console.log(error);
         res.json({ success: false, message: error.message })
     }
@@ -96,4 +160,4 @@ const singleProduct = async (req, res) => {
     }
 }
 
-export { addProduct, listProduct, removeProduct, updateProduct, singleProduct };
+export { addProduct, listProduct, removeProduct, updateProduct, singleProduct, getProductById };

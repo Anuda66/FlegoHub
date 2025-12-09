@@ -14,8 +14,10 @@ function UpdatePricing({ selectPlan, aToken }) {
     const getSinglePlan = async () => {
         try {
             const response = await axios.get(backendUrl + `/api/plan/singlePlan/${selectPlan}`)
+            console.log(response.data.data);
+            
             if (response.data.success) {
-                setPlanData(response.data.data)
+                setPlanData(response.data.data)                
             }
             else {
                 toast.error(response.data.message)
@@ -29,6 +31,7 @@ function UpdatePricing({ selectPlan, aToken }) {
 
     useEffect(() => {
         getSinglePlan()
+        //console.log(selectPlan);
     }, [selectPlan])
 
     const updatePlanData = async () => {
@@ -42,7 +45,7 @@ function UpdatePricing({ selectPlan, aToken }) {
                 isPopular: planData.isPopular,
                 isVisible: planData.isVisible
             };
-
+            
             const response = await axios.post(backendUrl + `/api/plan/update/${selectPlan}`, updates, { headers: { aToken } })
 
             if (response.data.success) {

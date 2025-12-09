@@ -6,10 +6,10 @@ const productSchema = new mongoose.Schema({
     planId: [{ type: mongoose.Schema.Types.ObjectId, ref: 'plan' }],
     images: { type: Array, required: true },
     date: { type: Date, required: true },
-    category: { type: String, required: true}, // Added category
-    website: { type: String }, // Optional website URL
-    features: { type: Array, required: true }, // Array of key features
-    isActive: { type: Boolean, default: true }, // Product status
+    category: { type: String, required: true}, 
+    website: { type: String }, 
+    features: { type: Array, required: true }, 
+    isActive: { type: Boolean, default: true }, 
 
 }, { timestamps: true })
 

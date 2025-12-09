@@ -17,7 +17,9 @@ import Profile from './pages/Dashboard/Profile'
 import Subscriptions from './pages/Dashboard/Subscriptions'
 import MyApps from './pages/Dashboard/MyApps'
 import AppDetails from './pages/Dashboard/AppDetails'
-
+import PaymentHistory from './pages/Dashboard/PaymentHistory'
+import Payment from './pages/Dashboard/Payment'
+import PaymentMain from './pages/Payment'
 function App() {
 
   return (
@@ -32,6 +34,8 @@ function App() {
           <Route path="/contact" element={<Contact />} />
           <Route path="/product/:productId" element={<Product />} />
           <Route path="/login" element={<Login />} />
+          <Route path='/payment/:planId' element={<PaymentMain />} />
+
         </Route>
 
         {/* Dashboard layout without navbar/footer */}
@@ -42,6 +46,8 @@ function App() {
           <Route path='/subscriptions' element={<Subscriptions />} />
           <Route path='/myApps' element={<MyApps />} />
           <Route path='/allservicess/:productId' element={<AppDetails />} />
+          <Route path='/paymentHistory' element={<PaymentHistory />} />
+          <Route path='/payment/:planId' element={<Payment />} />
         </Route>
       </Routes>
 

@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from 'react'
 import { useSidebar } from '../../context/SidebarContext';
-import { useParams } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom'
 import { AppContext } from '../../context/appContext';
 import { TiTick } from 'react-icons/ti'
 
@@ -13,6 +13,8 @@ function AppDetails() {
 
   const { productAndPalan } = useContext(AppContext)
   const [productPlanData, setProductPlanData] = useState(false)
+
+  const navigate = useNavigate()
 
   const fetchProductPalan = async () => {
     productAndPalan.map((item) => {
@@ -118,17 +120,14 @@ function AppDetails() {
                               ))}
                             </ul>
 
-                            <button
-                              className={`mt-8 w-full py-3 px-6 rounded-md text-base font-semibold ${plan.isPopular ? 'bg-blue-800 text-white hover:bg-blue-700' : 'bg-gray-100 text-gray-900 hover:bg-gray-200'} focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 transition-colors duration-200 cursor-pointer`}
-                            >
+                            <button onClick={() => navigate(`/payment/${plan._id}`, { state: { plan, isAnnual } })} className={`mt-8 w-full py-3 px-6 rounded-md text-base font-semibold ${plan.isPopular ? 'bg-blue-800 text-white hover:bg-blue-700' : 'bg-gray-100 text-gray-900 hover:bg-gray-200'} focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 transition-colors duration-200 cursor-pointer`}>
                               Get Started
                             </button>
+
                           </div>
                         </div>
                       ))}
                     </div>
-
-
                   </div>
                 </div>
               </div>

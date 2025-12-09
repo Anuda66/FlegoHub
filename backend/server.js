@@ -7,6 +7,7 @@ import adminRouter from './routes/adminRoute.js'
 import userRouter from './routes/userRouter.js'
 import productRouter from './routes/productRout.js'
 import planRouter from './routes/planRoute.js'
+import bankSlipPaymentRouter from './routes/bankSlipPaymentRoter.js'
 
 // App config ------------------------------------------------
 const app = express()
@@ -24,6 +25,7 @@ app.use('/api/admin', adminRouter)
 app.use('/api/user', userRouter)
 app.use('/api/product', productRouter)
 app.use('/api/plan', planRouter)
+app.use('/api/bankSlipPayment', bankSlipPaymentRouter)
 
 app.get('/', (req, res) => {
     res.send('API working')

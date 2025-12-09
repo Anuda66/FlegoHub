@@ -16,11 +16,11 @@ const Products = ({ aToken }) => {
   const { isOpen } = useSidebar();
   const [open, setOpen] = useState(false);
   const [openDelet, setOpenDelet] = useState(false);
-  const [openUpdate, setOpenUpdate] = useState(false)
+  const [openUpdate, setOpenUpdate] = useState(false);
   const [selectedProductId, setSelectedProductId] = useState(null);
   const [productList, setProductList] = useState([]);
-  const [stats, setStats] = useState([])
-  const [selectProcut, setSelectProduct] = useState(null)
+  const [stats, setStats] = useState([]);
+  const [selectProduct, setSelectProduct] = useState(null);
 
   const fetchProductList = async () => {
     try {
@@ -42,10 +42,10 @@ const Products = ({ aToken }) => {
   }
 
   // get product Id when click icon and pass product Id to popup model
-  const handelProductClick = (priductId) => {
+  const handelProductClick = (productId) => {
     setOpenUpdate(true)
-    setSelectProduct(priductId)
-    console.log(selectProcut);
+    setSelectProduct(productId)
+    //console.log(productId);
   }
 
   const removeProduct = async () => {
@@ -70,6 +70,8 @@ const Products = ({ aToken }) => {
   const handleDeleteClick = (productId) => {
     setSelectedProductId(productId);
     setOpenDelet(true);
+    //console.log(productId);
+
   }
 
   const handleCancelDelete = () => {
@@ -132,7 +134,7 @@ const Products = ({ aToken }) => {
                       <button className='cursor-pointer hover:text-red-700' onClick={() => setOpenUpdate(false)}><ImCross /></button>
                     </div>
                     <div>
-                      <UpdateProduct aToken={aToken} />
+                      <UpdateProduct selectProduct={selectProduct} aToken={aToken} />
                     </div>
                   </div>
                 </div>

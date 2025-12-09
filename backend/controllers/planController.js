@@ -109,7 +109,7 @@ const updatePlan = async (req, res) => {
         // Find the plan-------------------------------------
         const plan = await planModel.findById(planId);
         if (!plan) {
-            return res.status(404).json({ success: false, message: 'Plan not found' });
+            return res.json({ success: false, message: 'Plan not found' });
         }
 
         // Check if name is being updated and already exists-----------------------
@@ -145,7 +145,7 @@ const updatePlan = async (req, res) => {
             { new: true, runValidators: true }
         );
 
-        res.status(200).json({ success: true, message: 'Plan updated successfully', });
+        res.json({ success: true, message: 'Plan updated successfully', });
     }
     catch (error) {
         console.log(error);

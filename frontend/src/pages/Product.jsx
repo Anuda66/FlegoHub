@@ -1,13 +1,16 @@
 import React, { useContext, useEffect, useState } from 'react'
 import { AppContext } from '../context/appContext'
-import { useParams } from 'react-router-dom'
+import { useParams, useNavigate } from 'react-router-dom'
 import { TiTick } from 'react-icons/ti'
 
 function Product() {
   const [isAnnual, setIsAnnual] = useState(false);
   const { productId } = useParams();
+  const [productid, setproductId] = useState(productId)
   const { productAndPalan } = useContext(AppContext);
   const [productPlanData, setProductPlanData] = useState(null);
+
+  const navigate = useNavigate()
 
   const fetchProductPalan = async () => {
     productAndPalan.forEach((item) => {
@@ -47,7 +50,7 @@ function Product() {
                         Choose the perfect plan for your needs.
                       </p>
 
-                      {/* Toggle switch */}
+                      {/* Toggle switch---------------------------------------------------------- */}
                       <div className="mt-6 flex justify-center items-center">
                         <span className={`mr-3 text-sm font-medium ${!isAnnual ? 'text-gray-900' : 'text-gray-500'}`}>
                           Monthly
@@ -102,9 +105,7 @@ function Product() {
                               ))}
                             </ul>
 
-                            <button
-                              className={`mt-8 w-full py-3 px-6 rounded-md text-base font-semibold ${plan.isPopular ? 'bg-blue-800 text-white hover:bg-blue-700' : 'bg-gray-100 text-gray-900 hover:bg-gray-200'} focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 transition-colors duration-200 cursor-pointer`}
-                            >
+                            <button onClick={() => navigate(`/payment/${plan._id}`, { state: { plan, isAnnual, productid } })} className={`mt-8 w-full py-3 px-6 rounded-md text-base font-semibold ${plan.isPopular ? 'bg-blue-800 text-white hover:bg-blue-700' : 'bg-gray-100 text-gray-900 hover:bg-gray-200'} focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 transition-colors duration-200 cursor-pointer`}>
                               Get Started
                             </button>
                           </div>

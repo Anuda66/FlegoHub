@@ -19,18 +19,13 @@ const Dashboard = () => {
               <p className="text-blue-600 text-2xl font-semibold mt-2 ">1,234</p>
             </div>
 
-            <div className="bg-green-50 p-6 rounded-lg shadow-lg border border-green-500 cursor-pointer hover:shadow-xl">
-              <h3 className="text-green-500 text-sm font-medium">Total Users</h3>
-              <p className="text-green-600 text-2xl font-semibold mt-2 ">1,234</p>
-            </div>
-
             <div className="bg-purple-50 p-6 rounded-lg shadow-lg border border-purple-500 cursor-pointer hover:shadow-xl">
-              <h3 className="text-purple-500 text-sm font-medium">Total Users</h3>
-              <p className="text-purple-600 text-2xl font-semibold mt-2 ">1,234</p>
+              <h3 className="text-purple-500 text-sm font-medium">Total Product</h3>
+              <p className="text-purple-600 text-2xl font-semibold mt-2 ">5</p>
             </div>
 
             <div className="bg-red-50 p-6 rounded-lg shadow-lg border border-red-500 cursor-pointer hover:shadow-xl">
-              <h3 className="text-red-500 text-sm font-medium">Total Users</h3>
+              <h3 className="text-red-500 text-sm font-medium">Total Income</h3>
               <p className="text-red-600 text-2xl font-semibold mt-2 ">1,234</p>
             </div>
           </div>

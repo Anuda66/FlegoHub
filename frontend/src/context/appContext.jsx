@@ -37,7 +37,7 @@ const AppContextProvider = (props) => {
 
             if (response.data.success) {
                 setProductAndPlan(response.data.data)
-                 console.log(response.data.data);
+                 //console.log(response.data.data);
             }
             else {
                 toast.error(response.data.message)

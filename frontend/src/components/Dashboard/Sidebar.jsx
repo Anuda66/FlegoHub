@@ -4,16 +4,19 @@ import { FaUserPlus } from "react-icons/fa6";
 import { AiFillProduct } from "react-icons/ai";
 import { IoIosHome } from "react-icons/io";
 import { RiMenuFold2Fill } from "react-icons/ri";
+import { RiMoneyDollarCircleFill } from "react-icons/ri";
+import { MdOutlineMiscellaneousServices } from "react-icons/md";
+
 
 
 const Sidebar = () => {
   const { isOpen, setIsOpen } = useSidebar();
 
   const menuItems = [
-    { name: 'Dashboard', path: '/dashboard', icon: <IoIosHome /> },
-    { name: 'All Servicess', path: '/allservicess', icon: <FaUserPlus /> },
-    { name: 'My apps', path: '/myApps', icon: <AiFillProduct /> },
+    // { name: 'Dashboard', path: '/dashboard', icon: <IoIosHome /> },
+    { name: 'All Servicess', path: '/allservicess', icon: <MdOutlineMiscellaneousServices  /> },
     { name: 'Subscriptions', path: '/subscriptions', icon: <AiFillProduct /> },
+    { name: 'Payment History', path: '/paymentHistory', icon: <RiMoneyDollarCircleFill/> },
   ];
 
   return (
