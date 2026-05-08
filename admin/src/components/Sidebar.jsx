@@ -7,6 +7,7 @@ import { RiMenuFold2Fill } from "react-icons/ri";
 import { IoDocumentsSharp } from "react-icons/io5";
 import { MdLocalOffer } from "react-icons/md";
 import { MdPayments } from "react-icons/md";
+import { VscGraphLine } from "react-icons/vsc";
 
 
 const Sidebar = () => {
@@ -18,8 +19,9 @@ const Sidebar = () => {
     { name: 'Products', path: '/products', icon: <AiFillProduct /> },
     { name: 'Pricing Plan', path: '/pricingPlan', icon: <IoDocumentsSharp  /> },
     { name: 'Slip Paymenst', path: '/slipPayents', icon: <MdPayments    /> },
+    { name: 'Income', path: '/income', icon: <VscGraphLine     /> },
     // { name: 'Subscriptions', path: '/subscriptions', icon: <AiFillProduct /> },
-    { name: 'Offers', path: '/offers', icon: <MdLocalOffer  /> },
+    // { name: 'Offers', path: '/offers', icon: <MdLocalOffer  /> },
   ];
 
   return (

@@ -8,6 +8,7 @@ import { Link } from 'react-router-dom';
 function Featured() {
 
     const { productAndPalan } = useContext(AppContext)
+    const { token, setToken } = useContext(AppContext)
 
     const [latestApp, setLatestApp] = useState([])
 
@@ -103,7 +104,7 @@ function Featured() {
                 </div>
             </div>
 
-            {/*CTA Section*/}
+            {/*CTA Section-----------------------------------------------------------------------------------------------*/}
             <div className="bg-primary">
                 <div className="max-w-7xl mx-auto py-12 px-4 sm:px-6 lg:py-16 lg:px-8 lg:flex lg:items-center lg:justify-between">
                     <h2 className="text-3xl font-extrabold tracking-tight text-white sm:text-4xl">
@@ -111,11 +112,6 @@ function Featured() {
                         <span className="block text-accent">Sign up for FlegoHub today.</span>
                     </h2>
                     <div className="mt-8 flex lg:mt-0 lg:flex-shrink-0">
-                        <div className="inline-flex rounded-md shadow">
-                            <a href="/singin" className="btn-primary inline-flex items-center justify-center px-5 py-3 border border-transparent text-base font-medium rounded-md text-primary bg-accent hover:bg-yellow-400">
-                                Get Started
-                            </a>
-                        </div>
                         <div className="ml-3 inline-flex rounded-md shadow">
                             <a href="/contact" className="inline-flex items-center justify-center px-5 py-3 border  text-base font-medium rounded-md text-white bg-primary  hover:bg-blue-800">
                                 Contact Sales
@@ -124,7 +120,6 @@ function Featured() {
                     </div>
                 </div>
             </div>
-
         </div>
     )
 }

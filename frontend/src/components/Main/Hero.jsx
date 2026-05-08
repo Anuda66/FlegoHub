@@ -14,10 +14,10 @@ function Hero() {
                     FlegoHub provides seamless access to all Flego Innovation applications through a single, secure <br /> platform.
                 </p>
                 <div className="mt-10 flex justify-center space-x-4">
-                    <a href="#" className="btn-primary inline-flex items-center px-6 py-3 border border-transparent text-base font-medium rounded-md shadow-sm text-primary bg-accent hover:bg-yellow-400">
+                    <a href="/apps" className="btn-primary inline-flex items-center px-6 py-3 border border-transparent text-base font-medium rounded-md shadow-sm text-primary bg-accent hover:bg-yellow-400">
                         Explore Apps
                     </a>
-                    <a href="#" className="inline-flex items-center px-6 py-3 border border-transparent text-base font-medium rounded-md text-white bg-primary hover:bg-blue-800">
+                    <a href="/about" className="inline-flex items-center px-6 py-3 border border-transparent text-base font-medium rounded-md text-white bg-primary hover:bg-blue-800">
                         Learn More
                     </a>
                 </div>

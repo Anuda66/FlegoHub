@@ -7,14 +7,12 @@ import { RiMenuFold2Fill } from "react-icons/ri";
 import { RiMoneyDollarCircleFill } from "react-icons/ri";
 import { MdOutlineMiscellaneousServices } from "react-icons/md";
 
-
-
 const Sidebar = () => {
   const { isOpen, setIsOpen } = useSidebar();
 
   const menuItems = [
     // { name: 'Dashboard', path: '/dashboard', icon: <IoIosHome /> },
-    { name: 'All Servicess', path: '/allservicess', icon: <MdOutlineMiscellaneousServices  /> },
+    // { name: 'All Servicess', path: '/allservicess', icon: <MdOutlineMiscellaneousServices  /> },
     { name: 'Subscriptions', path: '/subscriptions', icon: <AiFillProduct /> },
     { name: 'Payment History', path: '/paymentHistory', icon: <RiMoneyDollarCircleFill/> },
   ];
@@ -39,8 +37,7 @@ const Sidebar = () => {
                 to={item.path}
                 className={({ isActive }) =>
                   `flex items-center p-2 rounded-lg hover:bg-gray-700 ${isActive ? 'bg-gray-700' : ''}`
-                }
-              >
+                }>
                 <p className="text-xl">{item.icon}</p>
 
                 {isOpen && <span className="ml-3 ">{item.name}</span>}

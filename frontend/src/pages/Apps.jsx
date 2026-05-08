@@ -22,12 +22,12 @@ function Apps() {
 
       <div className='bg-white p-6 rounded-lg shadow-sm '>
       {/*product sort---------------------------------------------------------------------------------------*/}
-      <div className='flex justify-end text-base sm:text-2xl mb-10 px-2'>
+      {/* <div className='flex justify-end text-base sm:text-2xl mb-10 px-2'>
         <select className='border-2 border-gray-300 text-sm px-2 py-3'>
           <option value='relavent'>Sort by: Name</option>
           <option value='low-high'>Sort by: Date</option>
         </select>
-      </div>
+      </div> */}
 
       {/* render product-----------------------------------------------------------------------------------  */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6">

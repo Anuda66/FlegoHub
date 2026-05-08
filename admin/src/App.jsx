@@ -11,6 +11,7 @@ import Subscriptions from './pages/Subscriptions';
 import PricingPlan from './pages/PricingPlan';
 import Offers from './pages/Offers';
 import SlipPayents from './pages/SlipPayents';
+import Income from './pages/Income';
 
 export const backendUrl = import.meta.env.VITE_BACKEND_URL
 
@@ -40,6 +41,7 @@ function App() {
               <Route path='/pricingPlan' element={<PricingPlan aToken={aToken} />} />
               <Route path='/offers' element={<Offers aToken={aToken} />} />
               <Route path='/slipPayents' element={<SlipPayents aToken={aToken} />} />
+              <Route path='/income' element={<Income aToken={aToken} />} />
             </Route>
           </Routes>
         </>

@@ -26,7 +26,7 @@ function Login() {
         if (response.data.success) {
           setToken(response.data.token);
           localStorage.setItem('token', response.data.token)
-          navigate("/dashboard");
+          navigate("/");
           
         }
         else {
@@ -38,7 +38,7 @@ function Login() {
         if (response.data.success) {
           setToken(response.data.token);
           localStorage.setItem('token', response.data.token)
-          navigate("/dashboard");
+          navigate("/");
         }
         else {
           toast.error(response.data.message);

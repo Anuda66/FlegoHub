@@ -3,6 +3,7 @@ import validator from 'validator';
 import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
 import { v2 as cloudinary } from 'cloudinary'
+import bankSlipPaymentModel from '../models/bankSlipPaymentModel.js';
 
 const createToken = (id) => {
     return jwt.sign({ id }, process.env.JWT_SECRET)
@@ -50,24 +51,24 @@ const addUser = async (req, res) => {
     }
 }
 
-// API for user register------------------------------
+// API for user register-----------------------------------------------
 const registerUser = async (req, res) => {
     try {
         const { NIC, name, email, password, phone } = req.body;
 
-        // check user existing or not -----------------------------
+        // check user existing or not ---------------------------------------
         const exist = await userModel.findOne({ email });
         if (exist) {
             return res.json({ success: false, message: "User alredy existes" })
         }
 
-        // check user existing or not -----------------------------
+        // check user existing or not -----------------------------------
         const existNIC = await userModel.findOne({ NIC });
         if (existNIC) {
             return res.json({ success: false, message: "NIC alredy existes" })
         }
 
-        // Validation email format-----------------------------
+        // Validation email format---------------------------------------
         if (!validator.isEmail(email)) {
             return res.json({ success: false, message: "Place enter a valid email" })
         }
@@ -98,7 +99,7 @@ const registerUser = async (req, res) => {
     }
 }
 
-// API for user login ----------------------------------
+// API for user login ------------------------------------------------
 const loginUser = async (req, res) => {
     try {
         const { email, password } = req.body;
@@ -125,7 +126,7 @@ const loginUser = async (req, res) => {
     }
 }
 
-// Get user profile data------------------------------
+// Get user profile data-----------------------------------------------
 const getProfile = async (req, res) => {
     try {
         const { userId } = req;
@@ -138,7 +139,7 @@ const getProfile = async (req, res) => {
     }
 }
 
-// API for user profile update-------------------------
+// API for user profile update-------------------------------------------
 const updateProfile = async (req, res) => {
     try {
         const userId = req.user?.userId || req.user?.id || req.userId;
@@ -166,7 +167,7 @@ const updateProfile = async (req, res) => {
     }
 }
 
-//API for list user----------------------------------
+//API for list user----------------------------------------------------------
 const userList = async (req, res) => {
     try {
         const userList = await userModel.find({}).select('-password')
@@ -184,7 +185,7 @@ const userList = async (req, res) => {
     }
 }
 
-//API fro delete users-----------------------------
+//API fro delete users---------------------------------------------------------
 const removeUser = async (req, res) => {
     try {
         await userModel.findByIdAndDelete(req.body.id)
@@ -196,5 +197,57 @@ const removeUser = async (req, res) => {
     }
 }
 
+// Get all payment history for a specific user-------------------------------------
+const getUserPaymentHistory = async (req, res) => {
+    try {
+        const userId = req.userId; // from auth middleware
 
-export { registerUser, loginUser, getProfile, updateProfile, userList, removeUser, addUser } 
+        const payments = await bankSlipPaymentModel.find({ userId })
+            .populate('productId', 'productName images')
+            .populate('planId', 'name price')
+            .sort({ createdAt: -1 }); // latest first
+
+        if (!payments.length) {
+            return res.json({ success: true, message: 'No payment history found', data: [] });
+        }
+
+        res.json({
+            success: true,
+            totalPayments: payments.length,
+            data: payments
+        });
+
+    } catch (error) {
+        console.error('Get User Payment History Error:', error);
+        res.json({ success: false, message: error.message });
+    }
+};
+
+// Get all payment history for a specific user (Admin Endpoint)-------------------------------------
+const getUserPaymentHistoryAdmin = async (req, res) => {
+    try {
+        const {userId} = req.params; // from auth middleware
+
+        const payments = await bankSlipPaymentModel.find({ userId })
+            .populate('productId', 'productName images')
+            .populate('planId', 'name price')
+            .sort({ createdAt: -1 }); // latest first
+
+        if (!payments.length) {
+            return res.json({ success: true, message: 'No payment history found', data: [] });
+        }
+
+        res.json({
+            success: true,
+            totalPayments: payments.length,
+            data: payments
+        });
+
+    } catch (error) {
+        console.error('Get User Payment History Error:', error);
+        res.json({ success: false, message: error.message });
+    }
+};
+
+
+export { registerUser, loginUser, getProfile, updateProfile, userList, removeUser, addUser, getUserPaymentHistory, getUserPaymentHistoryAdmin } 

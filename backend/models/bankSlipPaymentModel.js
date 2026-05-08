@@ -4,7 +4,7 @@ const bankSlipPaymentSchema = new mongoose.Schema({
     userId: { type: mongoose.Schema.Types.ObjectId, ref: 'user', required: true },
     productId: { type: mongoose.Schema.Types.ObjectId, ref: 'product', required: true },
     planId: { type: mongoose.Schema.Types.ObjectId, ref: 'plan', required: true },
-    billingCycle: { type: String, enum: ['monthly', 'yearly'], required: true },
+    billingCycle: { type: String, enum: ['monthly', 'annual'], required: true },
     currency: { type: String, default: 'LKR', uppercase: true },
     image: { type: String, required: true },
     status: {

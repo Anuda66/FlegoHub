@@ -28,7 +28,6 @@ const AppContextProvider = (props) => {
         }
     }
 
-   
     //----------------------------------------------------------------------------------------------
     const fetchProductAndPricePalan = async () => {
         try {

@@ -104,15 +104,11 @@ function Payment() {
     //console.log(productID);
   }, [planId, state, productAndPalan, navigate]);
 
-  if (loading) {
-    return <div>Loading payment details...</div>;
-  }
-
   if (!selectedPlan) {
     return <div>Plan not found. Please select a plan.</div>;
   }
 
-  // Compute selected price
+  // Compute selected price-----------------------------------------------
   const pricing = selectedPlan.pricing || {};
   const selectedPrice = isAnnualBilling ? pricing.yearly?.price || 'N/A' : pricing.monthly?.price || 'N/A';
   const billingCycleDisplay = isAnnualBilling ? '/annually' : '/month';
@@ -136,7 +132,7 @@ function Payment() {
               <input type="text" placeholder="Card Number" className="block w-1/2 mb-4 p-2 border" />
               <input type="text" placeholder="Expiration Date" className="block w-1/2 mb-4 p-2 border" />
               <input type="text" placeholder="CVV" className="block w-1/2 mb-4 p-2 border" />
-              <button type="submit" className="bg-blue-600 text-white py-2 px-4 rounded">Pay Now</button>
+              <button type="submit" className="bg-blue-600 text-white py-2 px-4 rounded cursor-pointer">Pay Now</button>
             </form>
           </div>
         </div>
@@ -157,10 +153,10 @@ function Payment() {
               <input 
                 type="file" 
                 onChange={(e) => setImage(e.target.files[0])} 
-                className="block w-1/2 p-2 border" 
+                className="block w-1/2 p-2 border cursor-pointer" 
               />
             </div>
-            <button type="submit" className="bg-blue-600 text-white py-2 px-4 rounded">Submit Slip</button>
+            <button type="submit" className="bg-blue-600 text-white py-2 px-4 rounded cursor-pointer">Submit Slip</button>
           </form>
         </div>
       </div>

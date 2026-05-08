@@ -20,10 +20,10 @@ function Footer() {
                                 Products
                             </h3>
                             <ul className="mt-4 space-y-2">
-                                <li><a href="#" className="text-sm text-gray-500 hover:text-primary">LankaBill</a></li>
-                                <li><a href="#" className="text-sm text-gray-500 hover:text-primary">LankaFinance</a></li>
-                                <li><a href="#" className="text-sm text-gray-500 hover:text-primary">SmartDoctor</a></li>
-                                <li><a href="#" className="text-sm text-gray-500 hover:text-primary">AutoCare Pro</a></li>
+                                <li><a href="/apps" className="text-sm text-gray-500 hover:text-primary">LankaBill</a></li>
+                                <li><a href="/apps" className="text-sm text-gray-500 hover:text-primary">LankaFinance</a></li>
+                                <li><a href="/apps" className="text-sm text-gray-500 hover:text-primary">SmartDoctor</a></li>
+                                <li><a href="/apps" className="text-sm text-gray-500 hover:text-primary">AutoCare Pro</a></li>
                             </ul>
                         </div>
 
@@ -32,10 +32,10 @@ function Footer() {
                                 Company
                             </h3>
                             <ul className="mt-4 space-y-2">
-                                <li><a href="#" className="text-sm text-gray-500 hover:text-primary">About</a></li>
-                                <li><a href="#" className="text-sm text-gray-500 hover:text-primary">Careers</a></li>
-                                <li><a href="#" className="text-sm text-gray-500 hover:text-primary">Blog</a></li>
-                                <li><a href="#" className="text-sm text-gray-500 hover:text-primary">Contact</a></li>
+                                <li><a href="/" className="text-sm text-gray-500 hover:text-primary">Home</a></li>
+                                <li><a href="/apps" className="text-sm text-gray-500 hover:text-primary">Apps</a></li>
+                                <li><a href="/about" className="text-sm text-gray-500 hover:text-primary">About</a></li>
+                                <li><a href="/contact" className="text-sm text-gray-500 hover:text-primary">Contact</a></li>
                             </ul>
                         </div>
 
@@ -43,20 +43,6 @@ function Footer() {
                             <h3 className="text-sm font-semibold text-gray-900 tracking-wider uppercase">
                                 Connect
                             </h3>
-                            <div className="mt-4 flex space-x-6">
-                                <a href="#" className="text-gray-500 hover:text-primary">
-                                    <i className="fab fa-facebook-f"></i>
-                                </a>
-                                <a href="#" className="text-gray-500 hover:text-primary">
-                                    <i className="fab fa-twitter"></i>
-                                </a>
-                                <a href="#" className="text-gray-500 hover:text-primary">
-                                    <i className="fab fa-linkedin-in"></i>
-                                </a>
-                                <a href="#" className="text-gray-500 hover:text-primary">
-                                    <i className="fab fa-instagram"></i>
-                                </a>
-                            </div>
                             <div className="mt-4">
                                 <p className="text-sm text-gray-500">
                                     support@flegohub.com
@@ -70,7 +56,7 @@ function Footer() {
 
                     <div className="mt-12 border-t border-gray-200 pt-8">
                         <p className="text-sm text-gray-500 text-center">
-                            &copy; 2025 Flego Innovation. All rights reserved.
+                            &copy; 2026 Flego Innovation. All rights reserved.
                         </p>
                     </div>
                 </div>

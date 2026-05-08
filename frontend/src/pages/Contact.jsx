@@ -47,17 +47,17 @@ function Contact() {
           <form onSubmit={onSubmit} className="">
             <div className="">
               <label className="text-md">Full Name</label>
-              <input type="text" placeholder="Enter your name" name="name" required className="w-full h-10 px-5 mt-3 text-sm border-2 border-primary-100" />
+              <input type="text" placeholder="Enter your name" name="name" required className="w-full h-10 px-5 mt-3 text-sm border-1 border-primary-100" />
             </div>
 
             <div className="mt-8">
               <label className="text-md">Email</label>
-              <input type="email" placeholder="Enter your email" name="email" required className="w-full h-10 px-5 mt-3 text-sm border-2 border-primary-100" />
+              <input type="email" placeholder="Enter your email" name="email" required className="w-full h-10 px-5 mt-3 text-sm border-1 border-primary-100" />
             </div>
 
             <div className="mt-8">
               <label className="text-md">Message</label>
-              <textarea name="message" id="" placeholder="Enter your message" required className="w-full px-5 mt-3 text-sm border-2 h-28 border-primary-100" />
+              <textarea name="message" id="" placeholder="Enter your message" required className="w-full px-5 mt-3 text-sm border-1 h-28 border-primary-100" />
             </div>
 
             <button type="submit" className="w-full h-10 mt-10 text-white rounded-lg bg-blue-700 hover:bg-primary cursor-pointer">Send Message</button>

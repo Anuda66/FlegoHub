@@ -8,6 +8,7 @@ import userRouter from './routes/userRouter.js'
 import productRouter from './routes/productRout.js'
 import planRouter from './routes/planRoute.js'
 import bankSlipPaymentRouter from './routes/bankSlipPaymentRoter.js'
+import incomeRouter from './routes/incomeRoute.js'
 
 // App config ------------------------------------------------
 const app = express()
@@ -26,6 +27,7 @@ app.use('/api/user', userRouter)
 app.use('/api/product', productRouter)
 app.use('/api/plan', planRouter)
 app.use('/api/bankSlipPayment', bankSlipPaymentRouter)
+app.use('/api/income', incomeRouter)
 
 app.get('/', (req, res) => {
     res.send('API working')

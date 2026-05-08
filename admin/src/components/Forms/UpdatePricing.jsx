@@ -14,7 +14,7 @@ function UpdatePricing({ selectPlan, aToken }) {
     const getSinglePlan = async () => {
         try {
             const response = await axios.get(backendUrl + `/api/plan/singlePlan/${selectPlan}`)
-            console.log(response.data.data);
+            //console.log(response.data.data);
             
             if (response.data.success) {
                 setPlanData(response.data.data)                

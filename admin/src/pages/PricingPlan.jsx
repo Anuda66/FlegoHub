@@ -96,17 +96,17 @@ function PricingPlan({ aToken }) {
                             <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-200">
                                 <h3 className="text-gray-500 text-sm font-medium">Total Products</h3>
                                 <p className="text-2xl font-semibold mt-2">{state.totalProducts}</p>
-                                <p className="text-green-500 text-xs mt-2">+12% from last month</p>
+                                
                             </div>
                             <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-200">
                                 <h3 className="text-gray-500 text-sm font-medium">Products With Plans</h3>
                                 <p className="text-2xl font-semibold mt-2">{state.productsWithPlans}</p>
-                                <p className="text-green-500 text-xs mt-2">+12% from last month</p>
+                               
                             </div>
                             <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-200">
                                 <h3 className="text-gray-500 text-sm font-medium">Total Plans</h3>
                                 <p className="text-2xl font-semibold mt-2">{state.totalPlans}</p>
-                                <p className="text-green-500 text-xs mt-2">+12% from last month</p>
+                                
                             </div>
                         </div>
                     </div>

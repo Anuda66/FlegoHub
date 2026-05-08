@@ -8,14 +8,14 @@ import { AppContext } from '../../context/appContext';
 function Navbar() {
 
   const [visible, setVisible] = useState(false)
-  const {token, setToken} = useContext(AppContext)
+  const { token, setToken } = useContext(AppContext)
 
   const logout = () => {
     setToken(false)
     localStorage.removeItem('token');
     //navigate('/')
   }
-  
+
   const navigate = useNavigate()
 
   return (
@@ -40,7 +40,7 @@ function Navbar() {
                 <p>About</p>
                 <hr className='w-3/4 border-none h-[2px] bg-yellow-500 hidden' />
               </NavLink>
-              
+
               <NavLink to="/contact" className='flex flex-col items-center gap-1'>
                 <p>Contact</p>
                 <hr className='w-3/4 border-none h-[2px] bg-yellow-500 hidden' />
@@ -50,9 +50,9 @@ function Navbar() {
                 {
                   token ?
                     <div>
-                      <button onClick={()=>navigate('/allservicess')} className='btn-primary items-center py-2 px-4 border border-transparent text-base font-medium rounded-md shadow-sm text-primary bg-accent hover:bg-yellow-400 cursor-pointer'>Dashboard</button>
+                      <button onClick={() => navigate('/subscriptions')} className='btn-primary items-center py-2 px-4 border border-transparent text-base font-medium rounded-md shadow-sm text-primary bg-accent hover:bg-yellow-400 cursor-pointer'>Dashboard</button>
                     </div>
-                    : <button onClick={()=>navigate('/login')} className='bg-blue-800 py-2 px-4 text-white rounded-md hover:bg-blue-700 cursor-pointer'>Sign In</button>
+                    : <button onClick={() => navigate('/login')} className='bg-blue-800 py-2 px-4 text-white rounded-md hover:bg-blue-700 cursor-pointer'>Sign In</button>
                 }
               </li>
             </ul>
@@ -63,9 +63,20 @@ function Navbar() {
         {/* Sidebar menu ----------------------------------------------------------*/}
         <div className={`absolute top-0 h-screen right-0 bottom-0 overflow-hidden bg-white transition-all ${visible ? 'w-full' : 'w-0'}`}>
           <div className='flex flex-col text-gray-600'>
-            <div onClick={() => setVisible(false)} className='flex items-center gap-4 p-3 cursor-pointer'>
-              <img className='h-4 rotate-180' src={dropdown} alt='' />
-              <p>Back</p>
+            <div onClick={() => setVisible(false)} className='flex items-center gap-4 p-3 cursor-pointer justify-between'>
+              <div className='flex items-center gap-3'>
+                <img className='h-4 rotate-180' src={dropdown} alt='' />
+                <p>Back</p>
+              </div>
+              <div>
+                {
+                  token ?
+                    <div>
+                      <button onClick={() => navigate('/subscriptions')} className='btn-primary items-center py-2 px-4 border border-transparent text-base font-medium rounded-md shadow-sm text-primary bg-accent hover:bg-yellow-400 cursor-pointer'>Dashboard</button>
+                    </div>
+                    : <button onClick={() => navigate('/login')} className='bg-blue-800 py-2 px-4 text-white rounded-md hover:bg-blue-700 cursor-pointer'>Sign In</button>
+                }
+              </div>
             </div>
             <NavLink onClick={() => setVisible(false)} className='py-2 pl-6 border ' to='/'>Home</NavLink>
             <NavLink onClick={() => setVisible(false)} className='py-2 pl-6 border ' to='/apps'>Apps</NavLink>
@@ -73,11 +84,8 @@ function Navbar() {
             <NavLink onClick={() => setVisible(false)} className='py-2 pl-6 border ' to='/contact'>Contact</NavLink>
           </div>
         </div>
-
       </div>
-
     </div>
-
   )
 }
 

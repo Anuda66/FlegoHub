@@ -32,13 +32,14 @@ function AprovePayments({ selectPaymentID, aToken }) {
     return (
         <div>
             <h1 className='mt-2'>Aprove / Rejecte Payments : </h1>
-            <select className="w-full p-1 border rounded border-zinc-300 mt-2" onChange={(e) => setStatus(e.target.value)} value={status.notes} required >
-                <option value=""> Pending</option>
+            <select className="w-full p-1 border rounded border-zinc-300 mt-2 cursor-pointer" onChange={(e) => setStatus({...status, status: e.target.value})} value={status.status} required >
+                <option value=""> Select Status</option>
+                <option value="pending"> Pending</option>
                 <option value="approved">Approved</option>
                 <option value="rejected">Rejected</option>
             </select>
             <p>Note : (If reject) </p>
-            <input className="w-full p-1 mt-1 border rounded border-zinc-300" type="text" onChange={(e) => setStatus(e.target.value)} value={status.notes} placeholder='Enter reason of rejection payment' />
+            <input className="w-full p-1 mt-1 border rounded border-zinc-300" type="text" onChange={(e) => setStatus({...status, notes: e.target.value})} value={status.notes} placeholder='Enter reason of rejection payment' />
             <div className='flex justify-end space-x-2'>
                 <button className='mt-5 px-8 py-2 rounded-md cursor-pointer  bg-accent hover:bg-yellow-400  hover:shadow-md ' onClick={updatePaymentStatus}>Update  </button>
             </div>

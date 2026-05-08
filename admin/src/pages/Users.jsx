@@ -17,12 +17,16 @@ const Users = ({ aToken }) => {
   const [selectedUserId, setSelectedUserId] = useState(null);
   const [userList, setUserList] = useState([]);
   const [state, setState] = useState([])
+  const [openDetails, setOpenDetails] = useState(false)
+  const [paymentHistory, setPaymentHistory] = useState([])
+  const [selectedImage, setSelectedImage] = useState(null);
 
+  //Get user details----------------------------------------------------------------
   const fetchUserList = async () => {
     try {
       const response = await axios.get(backendUrl + '/api/user/userList')
-      console.log(response.data);
-      
+      // console.log(response.data);
+
       if (response.data.success) {
         setUserList(response.data.userList)
         setState(response.data.stats)
@@ -36,7 +40,11 @@ const Users = ({ aToken }) => {
       toast.error(error.message)
     }
   }
+  useEffect(() => {
+    fetchUserList()
+  }, [])
 
+  // Delete User ----------------------------------------------------------------
   const removeUser = async () => {
     try {
       const response = await axios.post(backendUrl + '/api/user/removeUser', { id: selectedUserId }, { headers: { aToken } })
@@ -53,19 +61,40 @@ const Users = ({ aToken }) => {
     }
   }
 
+  // get user payment history (admin) ------------------------------------------------------
+  const fetchUserPaymentHistoryAdmin = async () => {
+    try {
+      if (!selectedUserId) return;
+      const { data } = await axios.get(backendUrl + `/api/user/paymentHistory/${selectedUserId}`);
+      setPaymentHistory(data.data);
+      // console.log(data.data);
+    }
+    catch (error) {
+      console.log(error);
+      toast.error(error.message)
+    }
+  }
+  useEffect(() => {
+    fetchUserPaymentHistoryAdmin();
+  }, [selectedUserId]);
+
+  // Handle delete button click - opens the delete confirmation modal-----------------------
   const handleDeleteClick = (userId) => {
     setSelectedUserId(userId);
     setOpenDelet(true);
   }
-  
+
   const handleCancelDelete = () => {
     setOpenDelet(false);
     setSelectedUserId(null);
   }
 
-  useEffect(() => {
-    fetchUserList() 
-  }, [])
+  // Handle view details button click - opens the user details modal-----------------------
+  const handleViewDetailsClick = (userId) => {
+    setSelectedUserId(userId);
+    setOpenDetails(true);
+    // console.log(userId);
+  }
 
   return (
     <div className='bg-slate-50 min-h-screen'>
@@ -132,6 +161,101 @@ const Users = ({ aToken }) => {
             </div>
           )}
 
+          {/* User details popup modal---------------------------------------------------------------- */}
+          {openDetails && (
+            <div className="fixed inset-0 z-10 flex items-center justify-center bg-black/60 bg-opacity-75">
+              <div className="bg-white rounded-lg shadow-xl w-full max-w-4xl p-6">
+                <div className=" ">
+                  <div className="ml-4">
+                    <div className='flex justify-between items-center'>
+                      <h3 className="text-lg font-medium text-gray-900">User Details</h3>
+                      <button className='cursor-pointer hover:text-red-700' onClick={() => setOpenDetails(false)}><ImCross /></button>
+                    </div>
+                    <div className='overflow-y-auto' style={{ maxHeight: '80vh' }}>
+                      <div>
+                        {userList.filter(user => user._id === selectedUserId).map((user) => (
+                          <div key={user._id} className='mt-4'>
+                            <div className='flex flex-col md:flex-row gap-6 items-center'>
+                              <div>
+                                <img className=' w-20 h-20 rounded-full ' src={user.image} alt="User" />
+                              </div>
+                              <div>
+                                <p className='text-gray-500'><span className='font-semibold text-gray-700'>Name:</span> {user.name}</p>
+                                <p className='text-gray-500'><span className='font-semibold text-gray-700'>Email:</span> {user.email}</p>
+                                <p className='text-gray-500'><span className='font-semibold text-gray-700'>Phone:</span> {user.phone}</p>
+                                <p className='text-gray-500'><span className='font-semibold text-gray-700'>NIC:</span> {user.NIC}</p>
+                              </div>
+                            </div>
+                          </div>
+                        ))}
+                      </div>
+
+                      <hr className='mb-5 border-gray-300 mt-5' />
+                      {/* single User paimet details------------------------------------------------------------------------------------------- */}
+
+                      <div>
+                        <div>
+                          <h4 className='text-md font-semibold mb-2 text-gray-700'>Paiment Details</h4>
+                        </div>
+                        <div>
+                          <div className="overflow-x-auto">
+                            <table className="min-w-full divide-y divide-gray-200">
+                              <thead className="bg-blue-100">
+                                <tr>
+                                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Data</th>
+                                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">product Name</th>
+                                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Plan Name</th>
+                                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Billing Cycle</th>
+                                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Amount</th>
+                                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Status</th>
+                                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Slip</th>
+                                </tr>
+                              </thead>
+                              <tbody className="bg-white divide-y divide-gray-200">
+                                {
+                                  paymentHistory.map((item, index) => (
+                                    <tr key={index}>
+                                      <td className="px-6 py-4 whitespace-nowrap text-sm">{new Date(item.paymentDate).toLocaleDateString()}</td>
+                                      <td className="px-6 py-4 whitespace-nowrap text-sm">{item.productId.productName}</td>
+                                      <td className="px-6 py-4 whitespace-nowrap text-sm">{item.planId.name}</td>
+                                      <td className="px-6 py-4 whitespace-nowrap text-sm">{item.billingCycle}</td>
+                                      <td className="px-6 py-4 whitespace-nowrap text-sm">RS {item.paymentAmount.toFixed(2)}</td>
+                                      <td className="px-6 py-4 whitespace-nowrap text-sm">
+                                        <span className={`px-2 inline-flex text-xs leading-5 font-semibold rounded-full ${item.status === 'pending' || item.status === 'rejected' ? 'bg-red-100 text-red-800' : 'bg-green-100 text-green-800'}`}>
+                                          {item.status}
+                                        </span>
+                                      </td>
+                                      <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900 ">
+                                        <img src={item.image} alt="Subscription Image" className="h-10 w-10 object-cover rounded cursor-pointer" onClick={() => setSelectedImage(item.image)} />
+                                      </td>
+                                    </tr>
+                                  ))
+                                }
+                              </tbody>
+                            </table>
+                            {selectedImage && (
+                              <div className="fixed inset-0 z-10 flex items-center justify-center bg-black/60 bg-opacity-75" onClick={() => setSelectedImage(null)}>
+                                <div className="bg-white p-4 rounded-lg relative max-w-3xl max-h-[80vh] overflow-auto">
+                                  <div className='flex justify-between items-center'>
+                                    <h3 className="text-lg font-medium text-gray-900">Bank Slip</h3>
+                                    <button className="cursor-pointer hover:text-red-700" onClick={() => setSelectedImage(null)}>
+                                      <ImCross />
+                                    </button>
+                                  </div>
+                                  <img src={selectedImage} alt="Enlarged Subscription Image" className="max-w-full max-h-[70vh] object-contain" />
+                                </div>
+                              </div>
+                            )}
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          )}
+          {/* All Users details with function ---------------------------------------------------------------------------------------------------------- */}
           <div className="overflow-x-auto">
             <table className="min-w-full divide-y divide-gray-200">
               <thead className="bg-blue-100">
@@ -155,7 +279,7 @@ const Users = ({ aToken }) => {
                     <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{item.email}</td>
                     <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{item.phone}</td>
                     <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500 flex gap-4 justify-center" >
-                      <button ><FaRegEye className='text-blue-600 cursor-pointer' /> </button>
+                      <button onClick={() => handleViewDetailsClick(item._id)} ><FaRegEye className='text-blue-600 cursor-pointer' /> </button>
                       <button onClick={() => handleDeleteClick(item._id)} ><ImBin2 className='text-red-600 cursor-pointer' /></button>
                     </td>
                   </tr>
