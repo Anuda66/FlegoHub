@@ -1,10 +1,10 @@
 # Flego Hub
 
 FlegoHub
-https://flegohub-frontend.onrender.com/
+[https://flegohub-frontend.onrender.com/](https://flegohub-frontend.onrender.com/)
 
 FlegoHub Admin
-https://flegohub-admin.onrender.com/
+[https://flegohub-admin.onrender.com/](https://flegohub-admin.onrender.com/)
 
 
 Flego Hub is an advanced, centralized platform developed by **Flego Innovation** to streamline how customers manage payments and subscriptions across the company’s entire suite of digital products and services.  
