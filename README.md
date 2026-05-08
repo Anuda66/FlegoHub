@@ -1,5 +1,12 @@
 # Flego Hub
 
+FlegoHub
+https://flegohub-frontend.onrender.com/
+
+FlegoHub Admin
+https://flegohub-admin.onrender.com/
+
+
 Flego Hub is an advanced, centralized platform developed by **Flego Innovation** to streamline how customers manage payments and subscriptions across the company’s entire suite of digital products and services.  
 
 As Flego Innovation continues to expand its software ecosystem—including popular solutions like **Lanka Bill, EduMate, CINA,** and more—the need for a unified payment and subscription management system has become essential. Flego Hub addresses this by offering customers a seamless experience where they can:
